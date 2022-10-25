@@ -103,6 +103,7 @@ const Step3 = ({ setStep, t, setLoading, signer, isActive, setNft }: IProps) => 
   };
 
   const addPassword = (num: string) => {
+    if (password.length === 4) return;
     setPassword((prev) => prev + num);
   };
 
@@ -144,6 +145,7 @@ const Step3 = ({ setStep, t, setLoading, signer, isActive, setNft }: IProps) => 
                   value={password}
                   onChange={setPassword}
                   numInputs={4}
+                  isInputSecure={true}
                   shouldAutoFocus={true}
                   inputStyle={{ fontSize: '3rem', padding: '1rem', margin: '1rem', width: '3.5rem' }}
                 />

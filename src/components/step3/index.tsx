@@ -43,7 +43,9 @@ interface IProps {
   setLoading: (isLoading: boolean) => void;
   signer: string;
   isActive: boolean;
-  setNft: React.Dispatch<React.SetStateAction<{ nftId: string; name: string; imageURI: string }>>;
+  setNft: React.Dispatch<
+    React.SetStateAction<{ nftId: string; name: string; imageURI: string; alreadyRegistered: boolean }>
+  >;
 }
 
 const Step3 = ({ setStep, t, setLoading, signer, isActive, setNft }: IProps) => {
@@ -188,10 +190,19 @@ const Step3 = ({ setStep, t, setLoading, signer, isActive, setNft }: IProps) => 
         >
           {nftList.map((nft, index) => {
             return (
-              <NftCard key={index} onClick={() => setSelectedNftIndex(index)}>
+              <NftCard
+                key={index}
+                onClick={() => {
+                  if (nft.alreadyRegistered === false) setSelectedNftIndex(index);
+                }}
+              >
                 <NftImageContainer>
                   <NftBorder isActive={index === selectedNftIndex} />
-                  <NftImage isActive={index === selectedNftIndex} src={nft.imageURI} />
+                  <NftImage
+                    alreadyRegistered={nft.alreadyRegistered}
+                    isActive={index === selectedNftIndex}
+                    src={nft.imageURI}
+                  />
                   <NftLabel isActive={index === selectedNftIndex}>#{nft.nftId}</NftLabel>
                 </NftImageContainer>
                 <NftName>{nft.name}</NftName>

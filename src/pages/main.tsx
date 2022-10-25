@@ -18,11 +18,14 @@ const Main = ({ setLoading }: IProps) => {
   const { t, setLanguage } = useTranslate();
   const [currentStep, setStep] = useState(0);
   const [signer, setSigner] = useState('');
-  const [selectedNft, setNft] = useState<{ nftId: string; name: string; imageURI: string }>({
-    nftId: '',
-    name: '',
-    imageURI: '',
-  });
+  const [selectedNft, setNft] = useState<{ nftId: string; name: string; imageURI: string; alreadyRegistered: boolean }>(
+    {
+      nftId: '',
+      name: '',
+      imageURI: '',
+      alreadyRegistered: false,
+    }
+  );
 
   useEffect(() => {
     setLanguage('kr');

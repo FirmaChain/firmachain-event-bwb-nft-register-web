@@ -18,6 +18,9 @@ export const NftCard = styled.div`
   width: 22rem !important;
   display: flex;
   flex-direction: column;
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const NftImageContainer = styled.div`
@@ -41,15 +44,18 @@ export const NftBorder = styled.div<{ isActive: boolean }>`
   background-repeat: no-repeat;
 `;
 
-export const NftImage = styled.img<{ isActive: boolean }>`
+export const NftImage = styled.div<{ src: string; alreadyRegistered: boolean; isActive: boolean }>`
+  ${(props) => props.alreadyRegistered && `filter: grayscale(100%);opacity:0.3;`}
   position: absolute;
   top: 1.2rem;
   left: 1.2rem;
   width: calc(100% - 2.4rem);
   height: calc(100% - 2.4rem);
-
   border-radius: 1rem;
-  background-color: #ccc;
+  background-image: url('${(props) => props.src}');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
 `;
 
 export const NftLabel = styled.div<{ isActive: boolean }>`
